@@ -9,17 +9,18 @@ namespace ClassLibrary1
 {
     public class Mathematics_test
     {
-        [Fact]
-        public void Method_add_returns_sum_of_given_values()
+        [Theory]
+        [InlineData(10,20,30)]
+        public void TheoryExample(double x, double y, double expected)
         {
             // arrange
             var math = new Mathematics();
 
             // act
-            double result = math.Add(10, 20);
+            double result = math.Add(x, y);
 
             // assert
-            Assert.Equal(30, result);
+            Assert.Equal(expected, result);
         }
 
         [Fact]
@@ -112,7 +113,7 @@ namespace ClassLibrary1
             // assert
             Assert.Equal(25, result);
         }
-
+        
     }
 
 }
