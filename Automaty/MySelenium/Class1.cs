@@ -5,8 +5,6 @@ using OpenQA.Selenium.Support.UI;
 using Xunit;
 using OpenQA.Selenium.Chrome;
 using System.Linq;
-using OpenQA.Selenium.Firefox;
-using System.Threading;
 
 namespace SeleniumTests
 {
@@ -17,6 +15,7 @@ namespace SeleniumTests
         private const string PageTitle = "Code Sprinters -";
         private const string TextToSearch = "code sprinters";
         private const string LinkTextToFind = "Poznaj nasze podejście";
+        private const string LinkTextToFind1 = "Akceptuję";
 
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -37,8 +36,9 @@ namespace SeleniumTests
             Search(TextToSearch);
             GoToSearchResultByPageTitle(PageTitle);
 
-                     
+                      
             Assert.Single(GetElementsByLinkText(LinkTextToFind));
+            Assert.Single(GetElementsByLinkText(LinkTextToFind1));
 
             driver.FindElement(By.LinkText("Akceptuję")).Click();
 
