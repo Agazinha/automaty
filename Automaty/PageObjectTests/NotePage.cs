@@ -2,6 +2,8 @@
 using PageObjectTests;
 using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace PageObjcectTests
 {
@@ -26,6 +28,21 @@ namespace PageObjcectTests
 
             var submit = Browser.FindElementById("comment-submit");
             submit.Click();
+        }
+
+        internal static bool CommentExists(Comment comment)
+        {
+            if (Browser.FindByXpath("//cite[text()='" + comment.User + "']").Count() == 1) { return true; } else { return false; }
+        }
+
+        internal static ReadOnlyCollection<IWebElement> GetComments(Comment comment)
+        {
+            return Browser.FindByXpath("//cite[text()='" + comment.User + "']");
+        }
+
+        internal static int CommentsFound(Comment comment)
+        {
+            return Browser.FindByXpath("//cite[text()='" + comment.User + "']").Count();
         }
     }
 }

@@ -20,7 +20,10 @@ namespace PageObjcectTests
         static Browser()
         {
             _driver = new FirefoxDriver();
-            _driver.Manage().Window.Maximize();
+            _driver.Manage()
+                .Window
+                .Maximize();
+
             _driver.Manage()
                 .Timeouts()
                 .ImplicitWait = TimeSpan.FromMilliseconds(500);

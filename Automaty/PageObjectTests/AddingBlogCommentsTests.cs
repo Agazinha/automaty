@@ -11,16 +11,19 @@ namespace PageObjectTests
         {
             MainPage.Open();
 
-            MainPage.OpenFirstNote();
-            NotePage.AddComment(new Comment
-
+            var comment = new Comment
             {
-                Text = "Lorem ipsum dolor sit",
-                Mail = "test@test.com",
-                User = "białko"
-            });
-                                  
-            // Sprawdź, że komentarz się dodał
+                Text = "Nie poddawaj się",
+                Mail = Guid.NewGuid() + "@test.com",
+                User = Guid.NewGuid().ToString()
+            };
+
+            MainPage.OpenFirstNote();
+            NotePage.AddComment(comment);
+            
+            Assert.Equal(1, NotePage.CommentsFound(comment));
+            Assert.Single(NotePage.GetComments(comment));
+            Assert.True(NotePage.CommentExists(comment));
         }
         
 
