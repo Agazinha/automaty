@@ -1,6 +1,9 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using PageObjectTests;
+using System;
+using System.Linq;
 
-namespace PageObjectTests
+namespace PageObjcectTests
 {
     internal class NotePage
     {
@@ -13,6 +16,9 @@ namespace PageObjectTests
             var email = Browser.FindElementById("email");
             email.Click();
             email.SendKeys(testData.Mail);
+
+            var nameLabel = Browser.FindByXpath("//label[@for='author']");
+            nameLabel.First().Click();
 
             var name = Browser.FindElementById("author");
             name.Click();
